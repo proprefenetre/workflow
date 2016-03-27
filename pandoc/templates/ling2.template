@@ -4,8 +4,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[english, american]{babel}
 \usepackage[useprefix=true,backend=biber,style=apa,bibstyle=authoryear,sorting=nyt]{biblatex}
+\usepackage{amssymb,amsmath}
 \usepackage{csquotes}
-\usepackage[usenames,dvipsnames]{color}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -34,26 +34,28 @@
 \usepackage{cleveref}
 \usepackage{url}
 \usepackage{titlesec}
-\usepackage[]{tipa}     % is really shitty with fostspec
+\usepackage[extra]{tipa}
+\usepackage{tipx}
 \usepackage{gb4e}
 
-\title{\bigskip $title$ \bigskip}
+\let\ipa\textipa 
+\nosinglegloss      % spacing of glosses
 
-\author{$for(author)$ $author.name$ \newline \normalsize $author.snum$ \newline\small \protect\url{$author.email$}\newline $sep$ \and $endfor$}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{$title$ \bigskip}
+
+\author{$for(author)$ $author.name$ \small $author.stud-number$ $sep$ \and $endfor$}
 
 \date{}
 
 \begin{document}  
 \setkeys{Gin}{width=1\textwidth} 	
-% \setromanfont[Mapping=tex-text,]{Gentium Plus} 
-%Numbers=OldStyle
-% \setsansfont[Mapping=tex-text]{Gentium Plus} 
-% \setmonofont[Mapping=tex-text,Scale=0.9]{Inconsolata}
 
 $if(title)$
-\begin{flushleft}
 \maketitle
-\end{flushleft}
 $endif$
 
 $if(abstract)$

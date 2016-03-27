@@ -1,15 +1,16 @@
 % vim: ft=tex
 \documentclass[11pt,article,oneside]{memoir}
+\usepackage{memoir-article-styles}
 \usepackage[english, american]{babel}
 \usepackage[useprefix=true,backend=biber,style=apa,bibstyle=authoryear,sorting=nyt]{biblatex}
 % \usepackage{fullpage}
-\usepackage{fontspec}
-\usepackage{memoir-article-styles}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,amsmath}
+\usepackage{microtype}
 \usepackage{csquotes}
 \usepackage[usenames,dvipsnames]{color}
-\usepackage{hyperref}
-\usepackage{longtable}
-\usepackage{booktabs}
+\usepackage{longtable,booktabs}
 \usepackage{graphicx}
 % We will generate all images so they have a width \maxwidth. This means
 % that they will get their normal width if they fit onto the page, but
@@ -21,26 +22,45 @@
 \let\Oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames]{color}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+
 \usepackage{cleveref}
 \usepackage{url}
-
 \usepackage{titlesec}
-% \usepackage{tipa}     is really shitty with fostspec
+\usepackage[tone,extra]{tipa}
+\usepackage{tipx}
 \usepackage{gb4e}
 
-\title{\bigskip \bigskip $title$}
+\let\ipa\textipa 
+% \let\eachwordone=\bf
+\nosinglegloss      % spacing of glosses
 
-\author{$for(author)$\Large $author.name$\vspace{0.05in}
-\newline\normalsize $author.snum$ \newline\small \protect\url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{$title$ \bigskip}
+
+\author{$for(author)$\Large $author.name$ \newline\normalsize $author.stud-number$ \newline\footnotesize \url{$author.email$}\vspace*{0.2in}\newline $sep$ \and $endfor$}
+
+% \author{$for(author)$\normalsize $author.name$ \newline\normalsize $author.stud-number$ \newline
+% \protect\url{$author.email$}\newline $author.assignment$ $sep$ \and $endfor$}
 
 \date{}
 
 \begin{document}  
 \setkeys{Gin}{width=1\textwidth} 	
-\setromanfont[Mapping=tex-text,]{Gentium Plus} 
-%Numbers=OldStyle
-\setsansfont[Mapping=tex-text]{Gentium Plus} 
-\setmonofont[Mapping=tex-text,Scale=0.9]{Inconsolata}
 \chapterstyle{article-4} 
 \pagestyle{kjh}
 
