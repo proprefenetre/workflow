@@ -14,6 +14,9 @@ In navolging van <plain-text.co> is het hele process is geautomatiseerd m.b.v. G
 
 ## CSL
 
+## To do:
+
+[] make a beamer template
 
 
 
