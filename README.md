@@ -2,7 +2,7 @@
 
 Bestanden die nodig zijn voor het produceren van fatsoenlijke papers.
 
-In navolging van <https://plain-text.co> is het hele process is geautomatiseerd m.b.v. GNU Make. `pandoc` bevat de essentiele bestanden uit `~/.pandoc`, i.e. templates, een csl-bestand en een citeproc-template.
+In navolging van <http://plain-text.co> is het hele process is geautomatiseerd m.b.v. GNU Make. `pandoc` bevat de essentiele bestanden uit `~/.pandoc`, i.e. templates, een csl-bestand en een citeproc-template.
 
 ## now with iPad support
 
@@ -10,13 +10,11 @@ Using a bash script, a small server, a markdown app and an ssh app (and Dropbox)
 
 ## Pandoc
 
-<pandoc.org/README.html>
+<http://pandoc.org/README.html>
 
 ## Pandoc-crossref
 
 <https://github.com/lierdakil/pandoc-crossref>
-
-## CSL
 
 ## To do:
 
