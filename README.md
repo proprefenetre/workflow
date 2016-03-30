@@ -17,8 +17,8 @@ Using a bash script, a small server, a markdown app and an ssh app (and Dropbox)
 
 ## To do:
 
-[] finish this readme
-[] make a beamer template
+* finish this readme
+* make a beamer template
 
 
 
