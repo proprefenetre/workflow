@@ -31,6 +31,10 @@ BIB = refs.bib
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
 CSL = $(PREFIX)/csl/apa.csl
 
+VARS = -V indent \
+	   -V fontfamily=droid \
+	   # -V numbersections \
+	   # -V fpage \
 
 PDFS=$(SRC:.md=.pdf)
 HTML=$(SRC:.md=.html)
