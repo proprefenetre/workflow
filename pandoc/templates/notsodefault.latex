@@ -236,8 +236,9 @@ $endif$
 \usepackage{gb4e}
 
 \let\ipa\textipa 
-\nosinglegloss      % spacing of glosses
+% \nosinglegloss      % spacing of glosses
 \let\eachwordone=\it
+\let\eachwordtwo=\sf
 
 \onehalfspacing
 
