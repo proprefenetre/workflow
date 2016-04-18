@@ -188,7 +188,7 @@
             <text variable="title"/>
           </if>
           <else>
-            <text variable="title" font-style="italic"/>
+            <text variable="title" font-style="italic" text-case="title" />
           </else>
         </choose>
       </if>
