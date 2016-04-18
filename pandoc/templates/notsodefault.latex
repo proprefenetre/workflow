@@ -235,10 +235,11 @@ $endif$
 \usepackage{tipx}
 \usepackage{gb4e}
 
-\let\ipa\textipa 
-% \nosinglegloss      % spacing of glosses
+\let\ipa\textipa        % rebranding of tipa command
+% \nosinglegloss        % spacing of glosses
+
 \let\eachwordone=\it
-\let\eachwordtwo=\sf
+\let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
 
 \onehalfspacing
 
@@ -312,7 +313,8 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+% \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+\printbibliography
 
 $endif$
 $for(include-after)$
