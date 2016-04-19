@@ -7,7 +7,7 @@ GIGNORE=.gitignore
 TEMPLATE=project.md
 REFS=refs.bib
 
-[[ -d .git ]] && git init
+[[ ! -d .git ]] && git init
 
 cp -r $WFDIR/* .
 
