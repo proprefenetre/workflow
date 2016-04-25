@@ -237,6 +237,7 @@ $endif$
 
 \let\ipa\textipa        % rebranding of tipa command
 % \nosinglegloss        % spacing of glosses
+\DeclareUnicodeCharacter{0101}{\={a}}
 
 \let\eachwordone=\it
 \let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
