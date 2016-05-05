@@ -8,7 +8,10 @@ class: ""
 date: 
 thanks:
 abstract: 
+nocite: |
+  @dummy
 crossrefYaml: "pandoc-crossref-settings.yaml"
+
 ...
 
 # Introduction
