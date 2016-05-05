@@ -33,6 +33,7 @@ CSL = $(PREFIX)/csl/apa.csl
 
 VARS = -V indent \
 	   -V fontfamily=droid \
+	   -V color \
 	   # -V numbersections \
 	   # -V fpage \
 
@@ -52,10 +53,10 @@ docx:	clean $(DOCX)
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(PREFIX)/marked/kultiad-serif.css --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
 %.tex:	%.md
-	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex -V indent -V fontfamily=droid --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
+	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
 
 %.pdf:	%.md
-	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex -V color -V indent -V fontfamily=droid -V numbersections --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
+	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
 
 %.docx:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --filter pandoc-crossref --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
