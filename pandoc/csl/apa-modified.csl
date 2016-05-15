@@ -483,17 +483,7 @@
     </choose>
   </macro>
   <macro name="citation-locator">
-    <group>
-      <choose>
-        <if locator="chapter">
-          <label variable="locator" form="long" text-case="capitalize-first"/>
-        </if>
-        <else>
-          <label variable="locator" form="short"/>
-        </else>
-      </choose>
-      <text variable="locator" prefix=" "/>
-    </group>
+    <text variable="locator"/>
   </macro>
   <macro name="container">
     <choose>
@@ -573,7 +563,8 @@
       <key macro="issued-sort"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
-      <group delimiter=", ">
+      <!-- <group delimiter=", "> -->
+      <group delimiter=": ">
         <group delimiter=" ">
           <text macro="author-short"/>
           <text macro="issued-year"/>
