@@ -29,11 +29,15 @@ TEMPLATE = $(PREFIX)/templates/notsodefault.latex
 BIB = refs.bib
 
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
-CSL = $(PREFIX)/csl/apa.csl
+CSL = $(PREFIX)/csl/apa-modified.csl
 
 VARS = -V indent \
-	   -V fontfamily=droid \
 	   -V color \
+	   -V fontsize=11pt \
+	   -V papersize=a4 \
+	   -V fontfamily=droid \
+	   -V defsans \
+	   # -V fontfamilyoptions=sfdefault \
 	   # -V numbersections \
 	   # -V fpage \
 

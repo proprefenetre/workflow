@@ -6,57 +6,61 @@ $else$
 \usepackage{lmodern}
 $endif$
 
+$if(defsans)$
+\renewcommand*\familydefault{\sfdefault}
+$endif$
+
 $if(fpage)$
 \usepackage{fullpage}
 $endif$
 
-$if(linestretch)$
-\setstretch{$linestretch$}
-$endif$
+% $if(linestretch)$
+% \setstretch{$linestretch$}
+% $endif$
 
 \usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
+% \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[T3,T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-$if(euro)$
-  \usepackage{eurosym}
-$endif$
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+% \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[T3,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% $if(euro)$
+%   \usepackage{eurosym}
+% $endif$
+% \else % if luatex or xelatex
+%   \ifxetex
+%     \usepackage{mathspec}
+%   \else
+%     \usepackage{fontspec}
+%   \fi
+%   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 
 $if(euro)$
   \newcommand{\euro}{€}
 $endif$
 
-$if(mainfont)$
-    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
-$endif$
+% $if(mainfont)$
+%     \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+% $endif$
 
-$if(sansfont)$
-    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
-$endif$
+% $if(sansfont)$
+%     \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+% $endif$
 
-$if(monofont)$
-    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
-$endif$
+% $if(monofont)$
+%     \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+% $endif$
 
-$if(mathfont)$
-    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
-$endif$
+% $if(mathfont)$
+%     \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+% $endif$
 
-$if(CJKmainfont)$
-    \usepackage{xeCJK}
-    \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
-$endif$
-\fi
+% $if(CJKmainfont)$
+%     \usepackage{xeCJK}
+%     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+% $endif$
+% \fi
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -79,27 +83,27 @@ $if(color)$
 \usepackage[usenames,dvipsnames]{color}
 $endif$
 
-$if(lang)$
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+% $if(lang)$
+% \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
 
 $if(babel-newcommands)$
   $babel-newcommands$
 $endif$
 
-\else
-  \usepackage{polyglossia}
-  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
-$for(polyglossia-otherlangs)$
-  \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
-$endfor$
-\fi
-$endif$
+% \else
+%   \usepackage{polyglossia}
+%   \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+% $for(polyglossia-otherlangs)$
+%   \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+% $endfor$
+% \fi
+% $endif$
 
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
+% $if(natbib)$
+% \usepackage{natbib}
+% \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+% $endif$
 
 $if(biblatex)$
 \usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
@@ -235,14 +239,21 @@ $endif$
 \usepackage{tipx}
 \usepackage{gb4e}
 
+
 \let\ipa\textipa        % rebranding of tipa command
 % \nosinglegloss        % spacing of glosses
+% define characters
 \DeclareUnicodeCharacter{0101}{\={a}}
+\DeclareUnicodeCharacter{0113}{\={e}}
+% Adapt font substitutions:
+% {encoding}{family}{series}{shape}
+\DeclareFontSubstitution{T3}{cmss}{bx}{n}
 
 \let\eachwordone=\it
 \let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
 
 \onehalfspacing
+
 
 \sectionfont{\Large\bfseries}
 \subsectionfont{\large}
