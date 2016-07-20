@@ -210,6 +210,7 @@ $if(dir)$
 \fi
 $endif$
 
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
     $if(title-meta)$
@@ -245,6 +246,7 @@ $endif$
 % define characters
 \DeclareUnicodeCharacter{0101}{\={a}}
 \DeclareUnicodeCharacter{0113}{\={e}}
+\DeclareUnicodeCharacter{014D}{\={o}}
 % Adapt font substitutions:
 % {encoding}{family}{series}{shape}
 \DeclareFontSubstitution{T3}{cmss}{bx}{n}
@@ -253,7 +255,8 @@ $endif$
 \let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
 
 \onehalfspacing
-
+% prevent hyphenation of word:
+\hyphenation{Marktplaats}
 
 \sectionfont{\Large\bfseries}
 \subsectionfont{\large}
