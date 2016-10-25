@@ -9,6 +9,7 @@ Markdown -> Pandoc -> Latex -> PDF -> master's degree
 - [pandoc-citeproc](https://hackage.haskell.org/package/pandoc-citeproc)
 - [pandoc-citeproc-preamble](https://github.com/spwhitton/pandoc-citeproc-preamble)
 - [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref)
+- [pandocfilters](https://github.com/jgm/pandocfilters)
 
 ## files
 
