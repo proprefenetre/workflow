@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This pandoc filter turns the default longtable used by pandoc into a boxy
+# little table that doesn't make me crazy (credits go to this one guy on google
+# groups, I forgot)
 
 import pandocfilters as pf
 
