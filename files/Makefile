@@ -31,39 +31,32 @@ BIB = refs.bib
 ## CSL stylesheet (located in the csl folder of the PREFIX directory).
 CSL = $(PREFIX)/csl/apa-modified.csl
 
-VARS = -V indent \
+VARS = -V documentclass=article \
+	   -V subparagraph \
 	   -V color \
 	   -V fontsize=11pt \
 	   -V papersize=a4 \
+	   -V numbersections \
 	   -V fontfamily=droid \
 	   -V defsans \
-	   # -V fontfamilyoptions=sfdefault \
-	   # -V numbersections \
+	   # -V indent \
 	   # -V fpage \
 
 PDFS=$(SRC:.md=.pdf)
-HTML=$(SRC:.md=.html)
 TEX=$(SRC:.md=.tex)
-DOCX=$(SRC:.md=.docx)
 
 all:	$(PDFS) $(HTML) $(TEX) $(DOCX)
 
 pdf:	clean $(PDFS)
-html:	clean $(HTML)
 tex:	clean $(TEX)
-docx:	clean $(DOCX)
 
-%.html:	%.md
-	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=$(PREFIX)/templates/html.template --css=$(PREFIX)/marked/kultiad-serif.css --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
 %.tex:	%.md
-	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
+	pandoc -f markdown+fancy_lists+startnum-hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
 
 %.pdf:	%.md
-	pandoc -f markdown+hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
+	pandoc -f markdown+lists_without_preceding_blankline+fancy_lists+startnum-hard_line_breaks -t latex -s -S --latex-engine=pdflatex $(VARS) --csl=$(CSL) --template=$(TEMPLATE) --filter pandoc-crossref --filter pandoc-citeproc --filter pandoc-citeproc-preamble --bibliography=$(BIB) -o $@ $<
 
-%.docx:	%.md
-	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --filter pandoc-crossref --filter pandoc-citeproc --csl=$(PREFIX)/csl/$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
 clean:
 	rm -f *.html *.pdf *.tex *.aux *.log *.out *.docx *.run.xml *.bcf *.swp *.swo
