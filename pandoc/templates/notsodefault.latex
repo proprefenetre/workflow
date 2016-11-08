@@ -1,3 +1,4 @@
+\PassOptionsToPackage{hyphens}{url}
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 
 $if(fontfamily)$
@@ -14,53 +15,15 @@ $if(fpage)$
 \usepackage{fullpage}
 $endif$
 
-% $if(linestretch)$
-% \setstretch{$linestretch$}
-% $endif$
-
 \usepackage{amssymb,amsmath}
-% \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 
-% \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
 \usepackage[T3,T1]{fontenc}
 \usepackage[utf8]{inputenc}
-% $if(euro)$
-%   \usepackage{eurosym}
-% $endif$
-% \else % if luatex or xelatex
-%   \ifxetex
-%     \usepackage{mathspec}
-%   \else
-%     \usepackage{fontspec}
-%   \fi
-%   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 
 $if(euro)$
   \newcommand{\euro}{€}
 $endif$
-
-% $if(mainfont)$
-%     \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
-% $endif$
-
-% $if(sansfont)$
-%     \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
-% $endif$
-
-% $if(monofont)$
-%     \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
-% $endif$
-
-% $if(mathfont)$
-%     \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
-% $endif$
-
-% $if(CJKmainfont)$
-%     \usepackage{xeCJK}
-%     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
-% $endif$
-% \fi
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -79,31 +42,13 @@ $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
 
-$if(color)$
 \usepackage[usenames,dvipsnames]{color}
-$endif$
 
-% $if(lang)$
-% \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
 \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
 
 $if(babel-newcommands)$
   $babel-newcommands$
 $endif$
-
-% \else
-%   \usepackage{polyglossia}
-%   \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
-% $for(polyglossia-otherlangs)$
-%   \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
-% $endfor$
-% \fi
-% $endif$
-
-% $if(natbib)$
-% \usepackage{natbib}
-% \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-% $endif$
 
 $if(biblatex)$
 \usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
@@ -130,9 +75,7 @@ $if(verbatim-in-note)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
 
-$if(tables)$
-\usepackage{longtable,booktabs}
-$endif$
+\usepackage{longtable,booktabs,tabularx}
 
 $if(graphics)$
 \usepackage{graphicx,grffile}
@@ -144,11 +87,6 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-$endif$
-
-$if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
 
 $if(strikeout)$
@@ -175,6 +113,7 @@ $endif$
 
 $if(numbersections)$
 \setcounter{secnumdepth}{5}
+\setcounter{section}{-1}
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
@@ -192,26 +131,9 @@ $else$
 \fi
 $endif$
 
-$if(dir)$
-\ifxetex
-  % load bidi as late as possible as it modifies e.g. graphicx
-  $if(latex-dir-rtl)$
-  \usepackage[RTLdocument]{bidi}
-  $else$
-  \usepackage{bidi}
-  $endif$
-\fi
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \TeXXeTstate=1
-  \newcommand{\RL}[1]{\beginR #1\endR}
-  \newcommand{\LR}[1]{\beginL #1\endL}
-  \newenvironment{RTL}{\beginR}{\endR}
-  \newenvironment{LTR}{\beginL}{\endL}
-\fi
-$endif$
-
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
+
 \hypersetup{unicode=true,
     $if(title-meta)$
             pdftitle={$title-meta$},
@@ -231,7 +153,9 @@ $endif$
             pdfborder={0 0 0},
     $endif$
             breaklinks=true}
+
 \urlstyle{same}  % don't use monospace font for urls
+
 \usepackage{setspace}
 \usepackage{titling}
 \usepackage[justification=raggedright,labelfont=bf]{caption}
@@ -239,7 +163,6 @@ $endif$
 \usepackage[tone,extra]{tipa}
 \usepackage{tipx}
 \usepackage{gb4e}
-
 
 \let\ipa\textipa        % rebranding of tipa command
 % \nosinglegloss        % spacing of glosses
@@ -253,6 +176,9 @@ $endif$
 
 \let\eachwordone=\it
 \let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
+
+\usepackage{csquotes}
+\AtBeginEnvironment{quote}{\itshape}
 
 \onehalfspacing
 % prevent hyphenation of word:
@@ -278,10 +204,9 @@ $endfor$
 
 \title{\bigskip $title$$if(thanks)$\thanks{$thanks$} $endif$ }
 
-\author{$for(author)$ $author.name$ \\ \footnotesize $author.student-number$ \\ \footnotesize
-$author.email$ $if(class)$ \\ \footnotesize $class$ $endif$ $sep$ \and $endfor$}
+\author{$for(author)$ $author.name$ \\ \footnotesize $author.student-number$ \\ \footnotesize $author.email$ $if(class)$ \\ \footnotesize $class$ $endif$ $sep$ \and $endfor$}
 
-\date{}
+\date{\today}
 
 \begin{document}
 $if(title)$
@@ -297,6 +222,7 @@ $for(include-before)$
 $include-before$
 
 $endfor$
+
 $if(toc)$
 {
 $if(colorlinks)$
@@ -306,12 +232,14 @@ $endif$
 \tableofcontents
 }
 $endif$
+
 $if(lot)$
 \listoftables
 $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
 $body$
 
 $if(natbib)$
@@ -323,15 +251,18 @@ $else$
 \renewcommand\refname{$biblio-title$}
 $endif$
 $endif$
+
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 
 $endif$
 $endif$
+
 $if(biblatex)$
 % \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 \printbibliography
 
 $endif$
+
 $for(include-after)$
 $include-after$
 
