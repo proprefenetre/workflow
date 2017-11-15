@@ -1,6 +1,11 @@
 \PassOptionsToPackage{hyphens}{url}
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 
+\usepackage[style=authoryear,sorting=nyt,backend=biber,useprefix=false]{biblatex}
+
+% \documentclass[11pt,en,a4paper]
+\usepackage[shorthands=off,greek,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
@@ -39,42 +44,23 @@ $if(geometry)$
 $endif$
 
 $if(colorlinks)$
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,table}{xcolor} % color is loaded by hyperref
 $endif$
 
-\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 
-\usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
-
-$if(babel-newcommands)$
-  $babel-newcommands$
-$endif$
-
-$if(biblatex)$
-\usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
-$if(biblatexoptions)$\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$}$endif$
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
-$endif$
-
-$if(listings)$
-\usepackage{listings}
-$endif$
-
-$if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-$endif$
-
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-
+% footnotes
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
 
+% increase footnote whitespace
+% \addtolength{\footnotesep}{2em}
+\usepackage[bottom]{footmisc}
+\setlength{\skip\footins}{2em}
+
+% tables
 \usepackage{longtable,booktabs,tabularx}
 
 $if(graphics)$
@@ -103,7 +89,7 @@ $else$
 \usepackage{parskip}
 }{% else
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\parskip}{1.3ex plus 0.5ex minus 0.2ex}
 }
 $endif$
 
@@ -113,7 +99,7 @@ $endif$
 
 $if(numbersections)$
 \setcounter{secnumdepth}{5}
-\setcounter{section}{-1}
+\setcounter{section}{$if(startcount)$$startcount$$else$0$endif$}
 $else$
 \setcounter{secnumdepth}{0}
 $endif$
@@ -132,7 +118,7 @@ $else$
 $endif$
 
 \usepackage[hyphens]{url}
-\usepackage{hyperref}
+\usepackage[hyperfootnotes=false]{hyperref}
 
 \hypersetup{unicode=true,
     $if(title-meta)$
@@ -158,24 +144,33 @@ $endif$
 
 \usepackage{setspace}
 \usepackage{titling}
-\usepackage[justification=raggedright,labelfont=bf]{caption}
+% \usepackage[justification=raggedright,labelfont=bf]{caption}
+\usepackage[labelfont=bf]{caption}
 \usepackage{sectsty}
 \usepackage[tone,extra]{tipa}
 \usepackage{tipx}
-\usepackage{gb4e}
+\usepackage{stmaryrd}
+\usepackage{philex}
 
 \let\ipa\textipa        % rebranding of tipa command
-% \nosinglegloss        % spacing of glosses
+\nosinglegloss        % spacing of glosses
+
 % define characters
 \DeclareUnicodeCharacter{0101}{\={a}}
 \DeclareUnicodeCharacter{0113}{\={e}}
 \DeclareUnicodeCharacter{014D}{\={o}}
+\DeclareUnicodeCharacter{27E6}{\llbracket}
+\DeclareUnicodeCharacter{27E7}{\rrbracket}
+\DeclareUnicodeCharacter{2263}{$$\equiv$$}
+\DeclareUnicodeCharacter{03C6}{$$\varphi$$}
+\DeclareUnicodeCharacter{03C8}{$$\psi$$}
+
 % Adapt font substitutions:
 % {encoding}{family}{series}{shape}
 \DeclareFontSubstitution{T3}{cmss}{bx}{n}
 
-\let\eachwordone=\it
-\let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
+% \let\eachwordone=\it
+% \let\eachwordtwo=\sf    % glosses are in sans serif, muy leesbaar!
 
 \usepackage{csquotes}
 \AtBeginEnvironment{quote}{\itshape}
