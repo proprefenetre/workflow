@@ -1,0 +1,171 @@
+% \PassOptionsToPackage{hyphens}{url}
+\documentclass[11pt,english,a4paper,article]{memoir}
+\usepackage[shorthands=off,main=english]{babel}
+\usepackage[]{bera}
+\usepackage{fullpage}
+\usepackage{amssymb,amsmath}
+\usepackage[T3,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[tone,extra]{tipa}
+\usepackage{tipx}
+\usepackage{stmaryrd}
+\usepackage{philex}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{longtable,booktabs,tabularx}
+% indent
+% \usepackage{parskip}
+\setlength{\parindent}{15pt}
+\usepackage[hyphens]{url}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{titling}
+\usepackage[labelfont=bf]{caption}
+\usepackage{csquotes}
+
+% prevent overfull lines
+\setlength{\emergencystretch}{3em}  
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$if(numbersections)$
+\setcounter{secnumdepth}{5}
+\setcounter{section}{$if(startcount)$$startcount$$else$0$endif$}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(subparagraph)$
+$else$
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+$endif$
+
+\urlstyle{same}  % don't use monospace font for urls
+
+% ipa
+\let\ipa\textipa        % rebranding of tipa command
+\nosinglegloss        % spacing of glosses
+
+% unicode characters
+\DeclareUnicodeCharacter{0101}{\={a}}
+\DeclareUnicodeCharacter{0113}{\={e}}
+\DeclareUnicodeCharacter{014D}{\={o}}
+\DeclareUnicodeCharacter{27E6}{\llbracket}
+\DeclareUnicodeCharacter{27E7}{\rrbracket}
+\DeclareUnicodeCharacter{2263}{$$\equiv$$}
+\DeclareUnicodeCharacter{03C6}{$$\varphi$$}
+\DeclareUnicodeCharacter{03C8}{$$\psi$$}
+
+% font substitutions:
+\DeclareFontSubstitution{T3}{cmss}{bx}{n}
+
+% block quotes
+\AtBeginEnvironment{quote}{\itshape}
+
+% ???
+\hypersetup{unicode=true,
+    $if(title-meta)$
+            pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+            pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+            pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
+    $endif$
+    $if(colorlinks)$
+            colorlinks=true,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+            citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+            pdfborder={0 0 0},
+    $endif$
+            breaklinks=true}
+
+
+% title
+\pretitle{\par\vskip 3em 
+    \begin{flushleft}}
+\posttitle{\end{flushleft}\par\vskip 0.5em}
+\preauthor{\begin{flushleft}\normalsize}
+\postauthor{\end{flushleft}}
+\predate{}
+\postdate{}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\title{\Large\bfseries $title$ $if(subtitle)$ \\ \large $subtitle$ $endif$ }
+\author{$for(author)$ $author.name$ \\ $author.student-number$ \\ $author.email$ $endfor$}
+
+\date{}
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+
+$if(lot)$
+\listoftables
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+
+$body$
+
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+
+$if(biblatex)$
+% \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+\printbibliography
+
+$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}
